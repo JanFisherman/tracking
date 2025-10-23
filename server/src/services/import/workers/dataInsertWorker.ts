@@ -66,9 +66,10 @@ export async function registerDataInsertWorker() {
       console.error(`[Import ${importId}] ClickHouse insert failed:`, error);
 
       // Sanitize error message
-      const safeMessage = error instanceof Error
-        ? `Data insertion failed: ${error.message.substring(0, 500)}`
-        : "Data insertion failed due to unknown error";
+      const safeMessage =
+        error instanceof Error
+          ? `Data insertion failed: ${error.message.substring(0, 500)}`
+          : "Data insertion failed due to unknown error";
 
       try {
         await ImportStatusManager.updateStatus(importId, "failed", safeMessage);

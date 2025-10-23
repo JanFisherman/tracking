@@ -209,9 +209,10 @@ export async function registerCsvParseWorker() {
       console.error(`[Import ${importId}] Error in CSV parse worker:`, error);
 
       // Sanitize error message to avoid exposing internal details
-      const safeMessage = error instanceof Error
-        ? error.message.replace(/\/[^\s]+/g, '[path]').substring(0, 500)
-        : "An unexpected error occurred during import processing";
+      const safeMessage =
+        error instanceof Error
+          ? error.message.replace(/\/[^\s]+/g, "[path]").substring(0, 500)
+          : "An unexpected error occurred during import processing";
 
       await ImportStatusManager.updateStatus(importId, "failed", safeMessage);
 
