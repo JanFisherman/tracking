@@ -211,6 +211,14 @@ class R2StorageService {
       throw new Error("R2 storage is not enabled");
     }
 
+    if (key.trim().length === 0) {
+      throw new Error("Invalid storage key: key cannot be empty");
+    }
+
+    if (key.includes("..")) {
+      throw new Error("Invalid storage key: path traversal not allowed");
+    }
+
     try {
       const upload = new Upload({
         client: this.client,
