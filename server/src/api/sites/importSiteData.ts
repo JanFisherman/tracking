@@ -134,6 +134,12 @@ export async function importSiteData(request: FastifyRequest<ImportDataRequest>,
         await pipeline(data.file, createWriteStream(storage.location));
         console.log(`[Import] File stored locally: ${storage.location}`);
       }
+
+      if (data.file.truncated) {
+        await deleteImportFile(storage.location, storage.isR2);
+        await updateImportStatus(importId, "failed", "File too large");
+        return reply.status(413).send({ error: "File too large." });
+      }
     } catch (fileError) {
       await updateImportStatus(importId, "failed", "Failed to save uploaded file");
       console.error("Failed to save uploaded file:", fileError);
