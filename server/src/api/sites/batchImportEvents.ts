@@ -16,7 +16,7 @@ const batchImportRequestSchema = z
       importId: z.string().uuid(),
     }),
     body: z.object({
-      events: z.array(UmamiImportMapper.umamiEventKeyOnlySchema).min(1),
+      events: z.array(UmamiImportMapper.umamiEventKeyOnlySchema),
       isLastBatch: z.boolean().optional(),
     }),
   })
