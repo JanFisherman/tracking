@@ -139,6 +139,12 @@ export function NoData() {
                   href="https://rybbit.com/docs/guides/svelte/sveltekit"
                 />
                 <Card
+                  icon={<img src="/platforms/thrivecart.svg" alt="ThriveCart" className="w-5 h-5 grayscale" />}
+                  title="ThriveCart"
+                  description=""
+                  href="https://rybbit.com/docs/guides/thrivecart"
+                />
+                <Card
                   icon={<SiAstro className="w-5 h-5" />}
                   title="Astro"
                   description=""
